@@ -1,0 +1,22 @@
+{
+    "name": "skynet",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Deploy your own cloud.",
+    "main": "index.js",
+    "repository": "https://github.com/mimiza/skynet",
+    "author": "MIMIZA <dev@mimiza.com>",
+    "license": "MIT",
+    "dependencies": {
+        "gun": "git+https://github.com/amark/gun.git",
+        "node-fetch": "^3.0.0",
+        "public-ip": "^4.0.4"
+    },
+    "scripts": {
+        "start": "node main.js",
+        "format": "npx prettier --write ."
+    },
+    "devDependencies": {
+        "prettier": "^2.4.1"
+    }
+}
