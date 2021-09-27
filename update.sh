@@ -40,7 +40,7 @@ fi
 if [ -f $root/$config ]
 then
 name=`jq -r ".name" $root/$config`
-[ $name = "null" ] && name=`jq -r ".name" $root/$config`
+[[ $name = "null" ]] && name=`jq -r ".name" $root/$config`
 fi
 
 # READY

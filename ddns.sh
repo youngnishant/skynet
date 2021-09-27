@@ -67,10 +67,10 @@ then
 fi
 
 # Check if env exists
-while [ -z $env ] || [ $env = "null" ]
+while [ -z $env ] || [[ $env = "null" ]]
 do
     read -p "Please enter environment: " env
-    if [ ! -z $env ] && [ $env != "null" ]
+    if [ ! -z $env ] && [[ $env != "null" ]]
     then
         break
     fi
@@ -84,10 +84,10 @@ done
 if [ -f "$root/$ddns" ]
 then
     current_ip=`jq -r ".currentIP" $ddns`
-    [ $current_ip = "null" ] && current_ip=""
+    [[ $current_ip = "null" ]] && current_ip=""
     
     last_ip=`jq -r ".lastIP" $ddns`
-    [ $last_ip = "null" ] && last_ip="$current_ip"
+    [[ $last_ip = "null" ]] && last_ip="$current_ip"
 fi
 
 new_ip=`curl -s "https://api.ipify.org"`

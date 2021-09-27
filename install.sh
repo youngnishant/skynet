@@ -71,29 +71,29 @@ fi
 if [ -f $root/$config ]
 then
     env=`jq -r ".env" $root/$config`
-    [ $env = "null" ] && env=`jq -r ".env" $root/$config`
+    [[ $env = "null" ]] && env=`jq -r ".env" $root/$config`
 
     name=`jq -r ".name" $root/$config`
-    [ $name = "null" ] && name=`jq -r ".name" $root/$config`
+    [[ $name = "null" ]] && name=`jq -r ".name" $root/$config`
 
     domain=`jq -r ".domain" $root/$config`
-    [ $domain = "null" ] && domain=`jq -r ".$env.domain" $root/$config`
+    [[ $domain = "null" ]] && domain=`jq -r ".$env.domain" $root/$config`
 
     port=`jq -r ".port" $root/$config`
-    [ $port = "null" ] && port=`jq -r ".$env.port" $root/$config`
+    [[ $port = "null" ]] && port=`jq -r ".$env.port" $root/$config`
     
     godaddy_key=`jq -r ".$env.godaddy.key" $root/$config`
-    [ $godaddy_key = "null" ] && godaddy_key=`jq -r ".$env.godaddy.key" $root/$config`
+    [[ $godaddy_key = "null" ]] && godaddy_key=`jq -r ".$env.godaddy.key" $root/$config`
 
     godaddy_secret=`jq -r ".$env.godaddy.secret" $root/$config`
-    [ $godaddy_secret = "null" ] && godaddy_secret=`jq -r ".$env.godaddy.secret" $root/$config`
+    [[ $godaddy_secret = "null" ]] && godaddy_secret=`jq -r ".$env.godaddy.secret" $root/$config`
 fi
 
 # Check if env exists
-while [ -z $env ] || [ $env = "null" ]
+while [ -z $env ] || [[ $env = "null" ]]
 do
     read -p "Please enter environment: " env
-    if [ ! -z $env ] && [ $env != "null" ]
+    if [ ! -z $env ] && [[ $env != "null" ]]
     then
         break
     fi
@@ -102,10 +102,10 @@ done
 [ ! -z $env ] && echo "Environment: $env"
 
 # Check if name exists
-while [ -z $name ] || [ $name = "null" ]
+while [ -z $name ] || [[ $name = "null" ]]
 do
     read -p "Please enter peer name: " name
-    if [ ! -z $name ] && [ $name != "null" ]
+    if [ ! -z $name ] && [[ $name != "null" ]]
     then
         break
     fi
@@ -114,10 +114,10 @@ done
 [ ! -z $name ] && echo "Peer name: $name"
 
 # Check if domain exists
-while [ -z $domain ] || [ $domain = "null" ]
+while [ -z $domain ] || [[ $domain = "null" ]]
 do
     read -p "Please enter domain: " domain
-    if [ ! -z $domain ] && [ $domain != "null" ]
+    if [ ! -z $domain ] && [[ $domain != "null" ]]
     then
         break
     fi
@@ -126,10 +126,10 @@ done
 [ ! -z $domain ] && echo "Domain: $domain"
 
 # Check if port exists
-while [ -z $port ] || [ $port = "null" ]
+while [ -z $port ] || [[ $port = "null" ]]
 do
     read -p "Please enter port: " port
-    if [ ! -z $port ] && [ $port != "null" ]
+    if [ ! -z $port ] && [[ $port != "null" ]]
     then
         break
     else
@@ -223,19 +223,19 @@ then
         done
     fi
 
-    while [ -z $godaddy_key ] || [ $godaddy_key = "null" ]
+    while [ -z $godaddy_key ] || [[ $godaddy_key = "null" ]]
     do
         read -p "Please enter Godaddy API Key: " godaddy_key
-        if [ ! -z $godaddy_key ] && [ $godaddy_key != "null" ]
+        if [ ! -z $godaddy_key ] && [[ $godaddy_key != "null" ]]
         then
             break
         fi
     done
 
-    while [ -z $godaddy_secret ] || [ $godaddy_secret = "null" ]
+    while [ -z $godaddy_secret ] || [[ $godaddy_secret = "null" ]]
     do
         read -p "Please enter Godaddy API Secret: " godaddy_secret
-        if [ ! -z $godaddy_secret ] && [ $godaddy_secret != "null" ]
+        if [ ! -z $godaddy_secret ] && [[ $godaddy_secret != "null" ]]
         then
             break
         fi
