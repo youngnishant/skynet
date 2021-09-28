@@ -44,9 +44,6 @@ done
 
 [ ! -z $domain ] && echo "Domain: $domain"
 [ ! -z $host ] && echo "Host: $host"
-[ ! -z $root ] && echo "root: $root"
-[ ! -z $key ] && echo "key: $key"
-[ ! -z $secret ] && echo "secret: $secret"
 
 # Config root
 [ -z $root ] && root=`pwd`
@@ -76,6 +73,7 @@ do
     fi
 done
 
+echo "Date: $(date)"
 [ ! -z $env ] && echo "Environment: $env"
 [ ! -z $domain ] && echo "Domain: $domain"
 [ ! -z $host ] && echo "Host: $host"

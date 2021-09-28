@@ -59,7 +59,7 @@ done
 # Config root
 [ -z $root ] && root=`pwd` # Root folder of main.js
 
-[ -z $bash ] && bash="$(cd "$(dirname "$0")" && pwd)" # Root folder of Bash script files
+[ -z $bash ] && bash=$(cd `dirname $0` && pwd) # Root folder of Bash script files
 
 # Check if jq is installed? Install jq if jq doesn's exist.
 if ! command -v jq &> /dev/null
