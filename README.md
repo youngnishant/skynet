@@ -1,6 +1,6 @@
 # What is Skynet
 
-Skynet is a tool to help you start a Gun instance. It was designed to run on Raspberry Pi computers at home, so it will magically sync your external IP with GoDaddy DNS and you don't have to use any DDNS service.
+Skynet is a tool to help you run Gun instances with ease. It was designed to run on Raspberry Pi computers at home, so it will magically sync your Public IP with GoDaddy DNS and you don't have to use any DDNS service.
 
 Skynet is in development and the "main" branch is the development branch.
 
@@ -11,6 +11,7 @@ Skynet is in development and the "main" branch is the development branch.
 
 # Features
 
+- Automatically run on system startup.
 - Automatically update Godaddy DNS IP.
 - Automatically install/renew Let'sEncrypt SSL certificate.
 - Automatically pull update from github.
