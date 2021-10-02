@@ -8,6 +8,7 @@
     "author": "MIMIZA <dev@mimiza.com>",
     "license": "MIT",
     "dependencies": {
+        "aws-sdk": "^2.999.0",
         "gun": "git+https://github.com/amark/gun.git",
         "node-fetch": "^3.0.0",
         "public-ip": "^4.0.4"

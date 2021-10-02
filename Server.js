@@ -55,6 +55,10 @@ export class Server {
 
         this.config[this.env].pair.priv = process.env.PRIV || process.argv[11] || this.config[this.env]?.pair?.priv || null
 
+        this.config[this.env].pair.epub = process.env.EPUB || process.argv[12] || this.config[this.env]?.pair?.epub || null
+
+        this.config[this.env].pair.epriv = process.env.EPRIV || process.argv[13] || this.config[this.env]?.pair?.epriv || null
+
         const options = {}
 
         if (key && cert) {
@@ -160,7 +164,7 @@ export class Server {
     online(callback = () => {}) {
         return new Promise((resolve, reject) => {
             if (this.user.is || !this.config[this.env].pair) return reject()
-            else if (this.config[this.env]?.pair?.pub && this.config[this.env]?.pair?.priv) {
+            else if (this.config[this.env]?.pair?.pub && this.config[this.env]?.pair?.priv && this.config[this.env]?.pair?.epub && this.config[this.env]?.pair?.epriv) {
                 this.user.auth(this.config[this.env]?.pair, response => {
                     if (response.err) return reject(response.err)
                     else if (this.user.is) {
