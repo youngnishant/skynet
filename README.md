@@ -6,17 +6,17 @@ Skynet is in development and the "main" branch is the development branch.
 
 # Docs
 
-- Gun: https://github.com/amark/gun
-- Skynet: not written yet.
+-   Gun: https://github.com/amark/gun
+-   Skynet: not written yet.
 
 # Features
 
-- Automatically run on system startup.
-- Automatically update Godaddy DNS IP.
-- Automatically install/renew Let'sEncrypt SSL certificate.
-- Automatically pull update from github.
-- Automatically join MIMIZA Skynet hub.
-- Automatically update IP, heartbeat status to user space.
+-   Automatically run on system startup.
+-   Automatically update Godaddy DNS IP.
+-   Automatically install/renew Let'sEncrypt SSL certificate.
+-   Automatically pull update from github.
+-   Automatically join MIMIZA Skynet hub.
+-   Automatically update IP, heartbeat status to user space.
 
 # Install
 
@@ -24,8 +24,8 @@ Skynet is in development and the "main" branch is the development branch.
 
 You might need one of the following things:
 
-- Godaddy domain, API key, API secret: if you don't have static Public IP and want Skynet to automatically update Godaddy DNS IP for you.
-- Make sure you have setup NAT/port forwarding so that Let'sEncrypt bot can find you on the internet.
+-   Godaddy domain, API key, API secret: if you don't have static Public IP and want Skynet to automatically update Godaddy DNS IP for you.
+-   Make sure you have setup NAT/port forwarding so that Let'sEncrypt bot can find you on the internet.
 
 Tested on: Raspberry OS on Raspberry Pi 4, Ubuntu 19.10 on Acer Nitro 5.
 
@@ -51,7 +51,7 @@ npm install https://github.com/mimiza/skynet.git
 import { db } from "skynet"
 const main = async () => {
     await db.start()
-    const { gun, user } = db
+    const { Gun, gun, sea, user } = db
 }
 main()
 ```

@@ -1,3 +1,4 @@
+import { merge } from "./libs/utils.js"
 import http from "http"
 import https from "https"
 import fs from "fs"
@@ -65,9 +66,8 @@ export class Server {
             options.key = fs.existsSync(key) ? fs.readFileSync(key) : null
             options.cert = fs.existsSync(cert) ? fs.readFileSync(cert) : null
         }
-        if (options.key && options.cert) {
-            this.https = https.createServer(options, Gun.serve(this.config[this.env].www)).listen(this.config[this.env].port)
-        } else this.http = http.createServer(Gun.serve(this.config[this.env].www)).listen(this.config[this.env].port)
+        if (options.key && options.cert) this.https = https.createServer(options, Gun.serve(this.config[this.env].www)).listen(this.config[this.env].port)
+        else this.http = http.createServer(Gun.serve(this.config[this.env].www)).listen(this.config[this.env].port)
 
         this.server = this.https || this.http
 
@@ -91,7 +91,7 @@ export class Server {
         if (fs.existsSync(path)) {
             let config = fs.readFileSync(path, "utf8")
             config = JSON.parse(config)
-            this.config = { ...this.config, ...config }
+            this.config = merge(this.config, config)
         }
 
         return this.config
