@@ -63,8 +63,8 @@ export class Server {
         const options = {}
 
         if (key && cert) {
-            options.key = fs.existsSync(key) ? fs.readFileSync(key) : null
-            options.cert = fs.existsSync(cert) ? fs.readFileSync(cert) : null
+            options.key = fs.existsSync(new URL(key, import.meta.url)) ? fs.readFileSync(new URL(key, import.meta.url)) : null
+            options.cert = fs.existsSync(new URL(cert, import.meta.url)) ? fs.readFileSync(new URL(cert, import.meta.url)) : null
         }
         if (options.key && options.cert) this.https = https.createServer(options, Gun.serve(this.config[this.env].www)).listen(this.config[this.env].port)
         else this.http = http.createServer(Gun.serve(this.config[this.env].www)).listen(this.config[this.env].port)
@@ -88,8 +88,8 @@ export class Server {
     readConfig() {
         const path = this.config.config || this.config.root + "/config.json"
 
-        if (fs.existsSync(path)) {
-            let config = fs.readFileSync(path, "utf8")
+        if (fs.existsSync(new URL(path, import.meta.url))) {
+            let config = fs.readFileSync(new URL(path, import.meta.url), "utf8")
             config = JSON.parse(config)
             this.config = merge(this.config, config)
         }
@@ -100,7 +100,7 @@ export class Server {
     writeConfig() {
         const path = this.config.config || this.config.root + "/config.json"
         const content = JSON.stringify(this.config, null, 4)
-        if (JSON.parse(content)) fs.writeFileSync(path, content)
+        if (JSON.parse(content)) fs.writeFileSync(new URL(path, import.meta.url), content)
         return this.config
     }
 
@@ -253,8 +253,8 @@ export class Server {
     updateDDNS(callback = () => {}) {
         return new Promise((resolve, reject) => {
             if (!this.user.is) return reject()
-
-            const content = fs.existsSync(this.config.root + "/ddns.json") ? fs.readFileSync(this.config.root + "/ddns.json") : null
+            const path = this.config.root + "/ddns.json"
+            const content = fs.existsSync(new URL(path, import.meta.url)) ? fs.readFileSync(new URL(path, import.meta.url)) : null
             const ddns = JSON.parse(content)
 
             if (ddns && typeof ddns === "object" && Object.keys(ddns).length > 0) {
