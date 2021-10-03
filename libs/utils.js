@@ -4,7 +4,10 @@ export const merge = (...args) => {
     args.forEach(o => {
         Object.entries(o).forEach(([k, v]) => {
             if (!r[k]) return (r[k] = v)
-            if (Array.isArray(r[k]) && Array.isArray(v)) return (r[k] = [...r[k], ...v])
+            if (Array.isArray(r[k]) && Array.isArray(v))
+                return v.forEach(e => {
+                    if (!r[k].includes(e)) r[k].push(e)
+                })
             if (typeof r[k] === typeof v && typeof r[k] === "object") return (r[k] = merge(r[k], v))
         })
     })
