@@ -3,7 +3,6 @@ import http from "http"
 import https from "https"
 import fs from "fs"
 import fetch from "node-fetch"
-import publicIP from "public-ip"
 import Gun from "gun"
 import "gun/sea.js"
 import "gun/nts.js"
@@ -277,20 +276,22 @@ export class Server {
     updateIP(callback = () => {}) {
         return new Promise((resolve, reject) => {
             if (!this.user.is) return reject()
-
-            publicIP.v4().then(data => {
-                if (data)
-                    this.user.put(
-                        {
-                            newIP: data,
-                            timestamp: Gun.state()
-                        },
-                        (response = {}) => {
-                            if (response.err) reject(response.err)
-                            else resolve(response)
-                        }
-                    )
-            })
+            fetch("https://api.ipify.org?format=json")
+                .then(response => response.json())
+                .then(data => {
+                    if (data?.ip)
+                        this.user.put(
+                            {
+                                newIP: data?.ip,
+                                timestamp: Gun.state()
+                            },
+                            (response = {}) => {
+                                if (response.err) reject(response.err)
+                                else resolve(response)
+                            }
+                        )
+                })
+                .catch(e => reject(e))
         }).then(
             response => {
                 if (callback) callback(response)
