@@ -2,7 +2,7 @@
 
 # Define vars
 who=$USER
-config="config.json"
+config="skynet.json"
 root=""
 bash=""
 env=""
@@ -42,7 +42,7 @@ then
     sudo apt install jq
 fi
 
-# If config.json exists, try to assign variables
+# If config file exists, try to assign variables
 if [ -f $root/$config ]
 then
     name=`jq -r ".name" $root/$config`

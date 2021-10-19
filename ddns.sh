@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define vars
-config="config.json"
+config="skynet.json"
 ddns="ddns.json"
 root=""
 env=""
@@ -49,7 +49,7 @@ done
 [ -z $root ] && root=`pwd`
 cd $root
 
-# If config.json exists, try to assign variables
+# If config file exists, try to assign variables
 if [ -f "$root/$config" ]
 then
     [ -z $env ] && env=`jq -r ".env" $root/$config`

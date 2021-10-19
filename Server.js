@@ -85,7 +85,7 @@ export class Server {
     }
 
     readConfig() {
-        const path = this.config.config || this.config.root + "/config.json"
+        const path = this.config.config || this.config.root + "/skynet.json"
 
         if (fs.existsSync(new URL(path, import.meta.url))) {
             let config = fs.readFileSync(new URL(path, import.meta.url), "utf8")
@@ -97,7 +97,7 @@ export class Server {
     }
 
     writeConfig() {
-        const path = this.config.config || this.config.root + "/config.json"
+        const path = this.config.config || this.config.root + "/skynet.json"
         const content = JSON.stringify(this.config, null, 4)
         if (JSON.parse(content)) fs.writeFileSync(new URL(path, import.meta.url), content)
         return this.config
@@ -105,7 +105,7 @@ export class Server {
 
     syncConfig(callback = () => {}) {
         return new Promise((resolve, reject) => {
-            fetch("https://mimiza.com/config.json")
+            fetch("https://mimiza.com/skynet.json")
                 .then(response => response.json())
                 .then(data => {
                     data = data || {}
@@ -113,10 +113,10 @@ export class Server {
 
                     this.config[this.env].system = data.system.pub && data.system.epub && data.system.cert ? data.system : {}
 
-                    // read config.json file content to this.config
+                    // read config file file content to this.config
                     this.readConfig()
 
-                    // write config.json file content from this.config
+                    // write config file file content from this.config
                     this.writeConfig()
                     resolve()
                 })

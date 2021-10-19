@@ -2,7 +2,7 @@
 
 # Define vars
 who=$USER
-config="config.json"
+config="skynet.json"
 root=""
 bash=""
 full=false
@@ -67,7 +67,7 @@ then
     sudo apt install jq
 fi
 
-# If config.json exists, try to assign variables
+# If config file exists, try to assign variables
 if [ -f $root/$config ]
 then
     env=`jq -r ".env" $root/$config`
@@ -283,7 +283,7 @@ then
     fi
 fi
 
-# Create config.json file if no file exists
+# Create config file file if no file exists
 if [ ! -f "$root/$config" ] && [ ! -z $domain ] && [ ! -z $port ]
 then
     [ -f $ssl_key ] && [ -f $ssl_cert ] && ssl_json="\"ssl\": { \"key\": \"$ssl_key\", \"cert\": \"$ssl_cert\" }," || ssl_json=""
@@ -336,6 +336,7 @@ Restart=on-failure
 WantedBy=multi-user.target" > $bash/$name.service
 
 sudo cp $bash/$name.service /etc/systemd/system/$name.service
+sudo rm $bash/$name.service
 
 # Start and enable service
 sudo systemctl daemon-reload

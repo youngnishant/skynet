@@ -1,5 +1,6 @@
 # Project
 *.service
+skynet.json
 config.json
 ddns.json
 radata
